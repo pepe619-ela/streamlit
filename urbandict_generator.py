@@ -60,7 +60,7 @@ def app():
                 df1 = df1.sort_values('thumbs_up', ascending=False)
                 
                 # Table with custom class
-                st.dataframe(df1, 0, {'.header-row': 'background-color: #333333; color: #FFFFFF;'})
+                st.dataframe(df1, 0)
                 
                 # Download button with custom class
                 # st.markdown(href, unsafe_allow_html=True)
