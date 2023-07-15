@@ -4,6 +4,7 @@ import requests
 import pandas as pd
 from io import BytesIO
 import base64
+import openpyxl
 
 def get_definition(term):
     url = "https://mashape-community-urban-dictionary.p.rapidapi.com/define"
