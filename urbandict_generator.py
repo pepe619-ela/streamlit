@@ -21,24 +21,48 @@ def get_definition(term):
 
 
 def app():
-    st.set_page_config(layout="wide")  # Use the full page instead of a narrow central column
-    st.title("Urban Dictionary Definition Generator")
+    st.set_page_config(layout="wide")
+    
+    # Custom CSS styles
+    st.markdown(
+        """
+        <style>
+        .title {
+            color: #FF9900;
+        }
+        .header-row th {
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+        .text-button {
+            color: #FFFFFF;
+            background-color: #FF9900;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    # Title with custom class
+    st.markdown('<h1 class="title">Urban Dictionary Definition Generator</h1>', unsafe_allow_html=True)
+    
     term = st.text_input("Enter a word to search its definition")
-    if st.button('Search'):
+    if st.button('Search', key='search-button'):
         if term:
             data = get_definition(term)
             if 'list' in data:
                 df = pd.DataFrame(data['list'])
                 df1 = df[['word','definition','example','thumbs_up','thumbs_down']]
-                df1 = df1.sort_values('thumbs_up', ascending=False)  # Sort the DataFrame by 'thumbs_up'
-                st.dataframe(df1)  # Use st.dataframe instead of st.write
-
-                # Convert DataFrame to Excel and create a download button
-                # towrite = BytesIO()
-                # df1.to_excel(towrite, index=False, sheet_name='Sheet1')  # write to BytesIO buffer
-                # towrite.seek(0)  # reset pointer
-                # b64 = base64.b64encode(towrite.read()).decode()  # read buffer and convert to base64
-                # href = f'<a href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64}" download="your_filename.xlsx">Download Data</a>'
+                df1 = df1.sort_values('thumbs_up', ascending=False)
+                
+                # Table with custom class
+                st.dataframe(df1, 0, {'.header-row': 'background-color: #333333; color: #FFFFFF;'})
+                
+                # Download button with custom class
                 # st.markdown(href, unsafe_allow_html=True)
             else:
                 st.write("No definition found.")
