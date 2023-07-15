@@ -27,8 +27,8 @@ def app():
             data = get_definition(term)
             if 'list' in data:
                 df = pd.DataFrame(data['list'])
-		df_selected = df[['word','definition','example','thumbs_up','thumbs_down']]
-                st.write(df_selected)
+		df1 = df[['word','definition','example','thumbs_up','thumbs_down']]
+                st.write(df1)
             else:
                 st.write("No definition found.")
         else:
