@@ -20,6 +20,7 @@ def get_definition(term):
     return data
 
 def app():
+    st.set_page_config(layout="wide")  # Use the full page instead of a narrow central column
     st.title("Urban Dictionary Definition Generator")
     term = st.text_input("Enter a word to search its definition")
     if st.button('Search'):
