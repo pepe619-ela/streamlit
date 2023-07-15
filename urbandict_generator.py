@@ -29,6 +29,7 @@ def app():
             if 'list' in data:
                 df = pd.DataFrame(data['list'])
                 df1 = df[['word','definition','example','thumbs_up','thumbs_down']]
+		df1 = df1.sort_values('thumbs_up', ascending=False)  # Sort the DataFrame by 'thumbs_up'
                 st.write(df1)
             else:
                 st.write("No definition found.")
