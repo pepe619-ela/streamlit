@@ -21,33 +21,6 @@ def get_definition(term):
     data = response.json()
     return data
 
-If you want to sort the DataFrame by the 'thumbs_up' column, you can use the sort_values() function provided by pandas. Here's how you can do this:
-
-python
-
-df1 = df1.sort_values('thumbs_up', ascending=False)
-
-This will sort the DataFrame in descending order by the 'thumbs_up' column. If you want to sort in ascending order, you can set ascending=True.
-
-Here is how your full Streamlit app would look with this change:
-
-python
-
-import streamlit as st
-import requests
-import pandas as pd
-from io import BytesIO
-import base64
-
-def get_definition(term):
-    url = "https://mashape-community-urban-dictionary.p.rapidapi.com/define"
-    headers = {
-        "X-RapidAPI-Key": "your_api_key",
-        "X-RapidAPI-Host": "mashape-community-urban-dictionary.p.rapidapi.com"
-    }
-    response = requests.get(url, headers=headers, params={"term": term})
-    data = response.json()
-    return data
 
 def app():
     st.set_page_config(layout="wide")  # Use the full page instead of a narrow central column
