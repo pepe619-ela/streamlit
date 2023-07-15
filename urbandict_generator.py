@@ -2,9 +2,6 @@
 import streamlit as st
 import requests
 import pandas as pd
-from io import BytesIO
-import base64
-import openpyxl
 
 def get_definition(term):
     url = "https://mashape-community-urban-dictionary.p.rapidapi.com/define"
@@ -37,12 +34,12 @@ def app():
                 st.dataframe(df1)  # Use st.dataframe instead of st.write
 
                 # Convert DataFrame to Excel and create a download button
-                towrite = BytesIO()
-                df1.to_excel(towrite, index=False, sheet_name='Sheet1')  # write to BytesIO buffer
-                towrite.seek(0)  # reset pointer
-                b64 = base64.b64encode(towrite.read()).decode()  # read buffer and convert to base64
-                href = f'<a href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64}" download="your_filename.xlsx">Download Data</a>'
-                st.markdown(href, unsafe_allow_html=True)
+                # towrite = BytesIO()
+                # df1.to_excel(towrite, index=False, sheet_name='Sheet1')  # write to BytesIO buffer
+                # towrite.seek(0)  # reset pointer
+                # b64 = base64.b64encode(towrite.read()).decode()  # read buffer and convert to base64
+                # href = f'<a href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64}" download="your_filename.xlsx">Download Data</a>'
+                # st.markdown(href, unsafe_allow_html=True)
             else:
                 st.write("No definition found.")
         else:
